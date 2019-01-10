@@ -55,15 +55,6 @@ $(function() {
             var departmentID = "#" + data[i].hiringOrganization.department.name.substring(0,2);
             $(departmentID).append('</div></div>');
         }
-
-
-        // (function clickEvent(){
-        //     $('.card-header').click( (e) => {
-        //         var element = e.currentTarget;
-        //         if()
-        //         $(".collapse.show").removeClass("show");
-        //     });
-        // }())
     }
     
 });

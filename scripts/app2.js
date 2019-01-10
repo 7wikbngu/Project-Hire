@@ -46,12 +46,27 @@ function createJobs(json){
 
         departmentArr.forEach((job, i) => {
             let location =  job.jobLocation.address.addressLocality+', '+ job.jobLocation.address.addressRegion +', '+ job.jobLocation.address.addressCountry;
-            categoryHTML += '<div class="card mb-3 left-text"><div class="card-header bg-white d-flex flex-row justify-content-between" id="' + categoryID + i+'" data-toggle="collapse" data-target="#collapse'+ categoryID + i+'" aria-expanded="false" aria-controls="collapse'+ categoryID + i+'"><div><h5 class="mb-0 text-blue">'+ job.title +'</h5><p class="text-muted">'+ location +'</p></div><div class="align-self-center text-blue"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></div></div><div id="collapse'+ categoryID + i+'" class="collapse" aria-labelledby="'+categoryID + i + '" data-parent="#accordion'+ categoryID +'"><div class="card-body text-muted">'+job.description+'<button class="btn btn-outline-primary mt-4">Apply Now</button></div></div></div>';
+            categoryHTML += '<div class="card mb-3 left-text"><div onclick="scrolling('+ categoryID + i +')" class="card-header bg-white d-flex flex-row justify-content-between" id="' + categoryID + i+'" data-toggle="collapse"data-target="#collapse'+ categoryID + i+'" aria-expanded="false" aria-controls="collapse'+ categoryID + i+'"><div><h5 class="mb-0 text-blue">'+ job.title +'</h5><p class="text-muted">'+ location +'</p></div><div class="align-self-center text-blue"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></div></div><div id="collapse'+ categoryID + i+'" class="collapse" aria-labelledby="'+categoryID + i + '" data-parent="#accordion'+ categoryID +'"><div class="card-body text-muted">'+job.description+'<button class="btn btn-outline-primary mt-4">Apply Now</button></div></div></div>';
         });
         categoryHTML += '</div></div>';
     });
 
+
     console.log(departmentsObj);
     $("#categories").append(categoryHTML);
+}
 
+function scrolling(idObject){
+    console.log("ID: ",idObject);
+    var id = $(idObject).attr("id");
+    var x = $("#" + id).offset();
+    
+    if($("#" + id).attr("aria-expanded") === "false"){
+        var offsetValue = x.top - 68;
+        console.log("Offset: ", offsetValue);
+        $('html, body').animate({
+            scrollTop: offsetValue
+        }, 750)
+    }
+    
 }
